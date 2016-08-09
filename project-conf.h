@@ -38,7 +38,7 @@
 
 /* Custom channel and PAN ID configuration for your project. */
 /*
-   #define RF_CHANNEL                  26
+   #define RF_CHANNEL                  25
    #define IEEE802154_CONF_PANID       0xABCD
 */
 
