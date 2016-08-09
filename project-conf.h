@@ -37,10 +37,10 @@
 #define __PROJECT_LWM2M_CONF_H__
 
 /* Custom channel and PAN ID configuration for your project. */
-/*
-   #define RF_CHANNEL                  26
+
+   #define RF_CHANNEL                  25
    #define IEEE802154_CONF_PANID       0xABCD
- */
+
 
 /* IP buffer size must match all other hops, in particular the border router. */
 /*
