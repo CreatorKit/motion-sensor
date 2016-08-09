@@ -50,7 +50,7 @@
 
 #include "lwm2m-client-flow-object.h"
 #include "lwm2m-client-flow-access-object.h"
-#include "lwm2m-client-ipso-presence-sensor.h"
+#include "lwm2m-client-ipso-presence.h"
 #include "lwm2m-client-device-object.h"
 /***************************************************************************************************
  * Definitions
@@ -106,7 +106,7 @@ void ConstructObjectTree(AwaStaticClient *client)
     DefineDeviceObject(client);
     DefineFlowObject(client);
     DefineFlowAccessObject(client);
-    DefinePresenceSensorObject(client);
+    PresenceObject_DefineObjectsAndResources(client, 100, 100);
 }
 
 void AwaStaticClient_Start(AwaStaticClient *client)
@@ -162,15 +162,14 @@ PROCESS_THREAD(lwm2m_client, ev, data)
     while(1)
     {
         static struct etimer et;
-        static int WaitTime;
+        static int WaitTime = 0;
         WaitTime = AwaStaticClient_Process(client);
         etimer_set(&et, (WaitTime * CLOCK_SECOND) / 1000);
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et) || (ev == sensors_event));
-
         if (data == &motion_sensor)
         {
-            printf("Motion event received\n");
-            PresenceSensor_IncrementCounter(client, 0);
+            printf("Motion event received: %d\n", motion_sensor.value(0));
+            PresenceObject_SetPresence(client, motion_sensor.value(0) ? true : false);
         }
 	}
 
