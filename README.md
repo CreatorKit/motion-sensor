@@ -4,7 +4,7 @@ This application registers Flow, Flow Access and Digital Input object to Flow se
 
 How To Compile
 
-Assuming you have creator-contiki source code with directories constrained-os, packages/button-sensor, packages/libobjects and packages/AwaLWM2M
+Assuming you have creator-contiki source code with directories constrained-os, packages/motion-sensor, packages/libobjects and packages/AwaLWM2M
 
 To build with TI CC2520 6lowpan driver
 ```
